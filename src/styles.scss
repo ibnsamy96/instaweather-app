@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primaryBrandColor: #b22519;
+  --primaryTextColor: #000000;
+  --interactiveTextColor: #437cb7;
+  --primaryBackgroundColor: rgb(249, 249, 249);
+  --secondaryBackgroundColor: rgb(255, 255, 255);
+  --primaryTitleFontFamily: "Days One", sans-serif;
+  --primaryTextFontFamily: "Cairo", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
