@@ -8,6 +8,7 @@ import { HttpService } from './http.service';
 })
 export class MainComponent implements OnInit {
   user!: {
+    location: string;
     date: {};
     coords: {
       latitude: number;
@@ -35,15 +36,24 @@ export class MainComponent implements OnInit {
       };
 
       this.getWeatherInfo(this.coords);
+      this.getLocationInfo(this.coords);
 
-      this.user = { date: dateComponents, coords: this.coords };
+      this.user = { location: '', date: dateComponents, coords: this.coords };
       console.log(this.user);
       clearInterval(resultChecker);
     }, 1000);
   }
 
+  getLocationInfo(coords: { latitude: number; longitude: number }) {
+    this.httpService.getLocationInfo(coords).subscribe((info: any) => {
+      this.user.location = info.address.state;
+      console.log(this.user);
+    });
+  }
+
   getWeatherInfo(coords: { latitude: number; longitude: number }) {
-    this.httpService.getWeatherInfo(coords).subscribe((info) => {
+    this.httpService.getWeatherInfo(coords).subscribe((info: any) => {
+      // this.user.coords = info.address.state;
       console.log(info);
     });
   }
