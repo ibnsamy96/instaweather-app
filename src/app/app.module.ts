@@ -10,6 +10,7 @@ import { NotationSelectorComponent } from './header/notation-selector/notation-s
 import { TodayComponent } from './main/today/today.component';
 import { ForecastComponent } from './main/forecast/forecast.component';
 import { CurrentWeatherIconComponent } from './main/shared/current-weather-icon/current-weather-icon.component';
+import { TypeCheckerPipe } from './main/type-checker.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CurrentWeatherIconComponent } from './main/shared/current-weather-icon/
     TodayComponent,
     ForecastComponent,
     CurrentWeatherIconComponent,
+    TypeCheckerPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

@@ -1,2 +1,4 @@
 <h1>INSTAWEATHER</h1>
-<app-notation-selector></app-notation-selector>
+<app-notation-selector
+  (typeChanged)="informMainComponent($event)"
+></app-notation-selector>

@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   showContent = false;
 
+  selectedType = 'C';
+
   coords!: {
     latitude: number;
     longitude: number;
@@ -22,5 +24,11 @@ export class AppComponent implements OnInit {
         latitude: e.coords.latitude,
       };
     });
+  }
+
+  updateUI(type: string) {
+    console.log(type);
+
+    this.selectedType = type;
   }
 }

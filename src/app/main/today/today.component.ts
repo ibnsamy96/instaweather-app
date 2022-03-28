@@ -9,6 +9,7 @@ export class TodayComponent implements OnInit {
   constructor() {}
   @Input() user: any;
   @Input() weather: any;
+  @Input() selectedType: any;
 
   ngOnInit(): void {}
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+// import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-notation-selector',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notation-selector.component.scss'],
 })
 export class NotationSelectorComponent implements OnInit {
+  @Output() typeChanged = new EventEmitter<string>();
+
   selectedType = 'C';
 
   constructor() {}
@@ -16,5 +19,7 @@ export class NotationSelectorComponent implements OnInit {
     console.log(type);
 
     this.selectedType = type;
+
+    this.typeChanged.emit(this.selectedType);
   }
 }

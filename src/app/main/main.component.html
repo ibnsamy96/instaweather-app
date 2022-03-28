@@ -1,1 +1,6 @@
-<app-today [user]="user" [weather]='weather'></app-today> <app-forecast></app-forecast>
+<app-today
+  [selectedType]="selectedType"
+  [user]="user"
+  [weather]="weather"
+></app-today>
+<app-forecast [selectedType]="selectedType"></app-forecast>

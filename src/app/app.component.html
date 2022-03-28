@@ -1,10 +1,11 @@
 <div class="dark-layer" [style.z-index]="showContent ? '5' : 20"></div>
-
+{{ selectedType }}
 <div
   class="container h-100 d-flex justify-content-between align-items-md-center flex-column"
 >
-  <app-header></app-header>
+  <app-header (typeChanged)="updateUI($event)"></app-header>
   <app-main
+    [selectedType]="selectedType"
     [coords]="coords"
     class="d-flex justify-content-evenly align-items-stretch flex-column"
   >

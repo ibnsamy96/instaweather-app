@@ -7,6 +7,8 @@ import { HttpService } from './http.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  @Input() selectedType: string = '';
+
   user!: {
     location: string;
     date: {};
@@ -48,7 +50,7 @@ export class MainComponent implements OnInit {
 
   getLocationInfo(coords: { latitude: number; longitude: number }) {
     this.httpService.getLocationInfo(coords).subscribe((info: any) => {
-      this.user.location = info.address.state;
+      this.user.location = info.address.state || info.address.city;
       console.log(this.user);
     });
   }
