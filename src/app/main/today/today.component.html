@@ -2,7 +2,8 @@
   <div class="col user">
     <p class="city">{{ user.location }}</p>
     <p class="date">{{ user.date | date: "mediumDate" }}</p>
-    <app-current-weather-icon class="current-icon"> </app-current-weather-icon>
+    <app-current-weather-icon [type]="'cloudy'" class="current-icon">
+    </app-current-weather-icon>
     <span class="current-summery">Cloudy</span>
   </div>
   <div class="col text-end degree">
