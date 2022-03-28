@@ -64,6 +64,8 @@ export class MainComponent implements OnInit {
           temp_max: info.main.temp_max,
           temp_min: info.main.temp_min,
         };
+        console.log(info);
+
         console.log(this.weather);
       },
       (err) => {
