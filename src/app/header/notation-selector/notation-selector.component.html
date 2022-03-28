@@ -1,3 +1,7 @@
-<button class="type">C</button>
+<button (click)="toggle('C')" class="type" [class.chosen]="selectedType == 'C'">
+  C
+</button>
 <!-- <span class="separator"></span> -->
-<button class="type chosen">F</button>
+<button (click)="toggle('F')" class="type" [class.chosen]="selectedType == 'F'">
+  F
+</button>
