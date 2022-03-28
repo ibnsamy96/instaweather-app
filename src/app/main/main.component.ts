@@ -1,15 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HttpService } from './http.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  user!: {
+    date: {};
+    coords: {
+      latitude: number;
+      longitude: number;
+    };
+  };
 
-  constructor() { }
+  @Input() coords!: {
+    latitude: number;
+    longitude: number;
+  };
+
+  constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
+    const resultChecker = setInterval(() => {
+      console.log(this.coords);
+      if (!this.coords) return;
+
+      const date = new Date();
+      const dateComponents = {
+        day: date.getDate(),
+        month: date.getMonth() + 1,
+        year: date.getFullYear(),
+      };
+
+      this.getWeatherInfo(this.coords);
+
+      this.user = { date: dateComponents, coords: this.coords };
+      console.log(this.user);
+      clearInterval(resultChecker);
+    }, 1000);
   }
 
+  getWeatherInfo(coords: { latitude: number; longitude: number }) {
+    this.httpService.getWeatherInfo(coords).subscribe((info) => {
+      console.log(info);
+    });
+  }
 }
