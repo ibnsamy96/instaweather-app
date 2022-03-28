@@ -14,11 +14,14 @@
   background: white;
   height: 6px;
   width: 6px;
+  outline: 3px solid white;
+
+  border-radius: 3px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: white;
 }
 
 .selectors {
