@@ -1,0 +1,74 @@
+/* width of vertical & height of horizontal scrollbars */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+  height: 6px;
+  width: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.selectors {
+  border-bottom: solid rgba(255, 255, 255, 0.75) 1px;
+
+  .selector {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 26px;
+    color: rgba(255, 255, 255, 0.75);
+    padding: 15px 5px;
+    background-color: transparent;
+    border: none;
+
+    &:not(:first-of-type) {
+      margin-left: 60px;
+    }
+    &.selected {
+      color: rgba(255, 255, 255, 1);
+      border-bottom: solid white 2px;
+    }
+  }
+}
+
+.weather-instance {
+  padding: 38px 10px;
+
+  &:not(:last-of-type) {
+    margin-right: 68px;
+  }
+
+  .time {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+  }
+
+  app-current-weather-icon {
+    height: 66px;
+    width: 66px;
+    margin: 14px 0;
+    display: inline-block;
+  }
+
+  .degree {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+}
