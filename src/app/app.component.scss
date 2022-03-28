@@ -1,3 +1,13 @@
 :host {
+  display: block;
   min-height: 100%;
+  background-image: url("../assets/images/dominik-lange-ZUvF7qEIcVI-unsplash.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+.container {
+  width: 1152px;
+  margin: auto;
 }
