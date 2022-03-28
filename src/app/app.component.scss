@@ -1,13 +1,23 @@
 :host {
   display: block;
-  min-height: 100%;
+  // TODO make sure to use right background color
   background-image: url("../assets/images/dominik-lange-ZUvF7qEIcVI-unsplash.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
+  height: 100%;
 }
 
 .container {
   width: 1152px;
   margin: auto;
+  min-height: 100%;
+
+  app-main {
+    flex-grow: 2;
+  }
+
+  * {
+    width: 100%;
+  }
 }
