@@ -14,8 +14,8 @@ export class HttpService {
   locationApi = `https://us1.locationiq.com/v1/reverse.php?`;
 
   privateKeys = {
-    weather: environment.API_KEY || process.env['API_KEY'],
-    location: environment.LOCATION_API_KEY || process.env['LOCATION_API_KEY'],
+    weather: environment.API_KEY ?? process.env['API_KEY'],
+    location: environment.LOCATION_API_KEY ?? process.env['LOCATION_API_KEY'],
   };
 
   constructor(private http: HttpClient) {}
