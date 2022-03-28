@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col user">
-    <p class="city">New Cairo</p>
-    <p class="date">Friday 20, 2020</p>
+    <p class="city">{{ user.location }}</p>
+    <p class="date">{{ user.date | date: "mediumDate" }}</p>
     <app-current-weather-icon class="current-icon"> </app-current-weather-icon>
     <span class="current-summery">Cloudy</span>
   </div>

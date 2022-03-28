@@ -38,7 +38,7 @@ export class MainComponent implements OnInit {
       this.getWeatherInfo(this.coords);
       this.getLocationInfo(this.coords);
 
-      this.user = { location: '', date: dateComponents, coords: this.coords };
+      this.user = { location: '', date: date, coords: this.coords };
       console.log(this.user);
       clearInterval(resultChecker);
     }, 1000);
