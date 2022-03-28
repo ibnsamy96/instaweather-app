@@ -1,0 +1,61 @@
+.user {
+  .city {
+    // font-family: "Work Sans";
+    // font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 75px;
+    /* identical to box height */
+
+    letter-spacing: 0.05em;
+
+    // color: #ffffff;
+
+    // mix-blend-mode: normal;
+  }
+
+  .date {
+    // font-family: 'Work Sans';
+    // font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.05em;
+  }
+
+  .current-icon {
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .current-summery {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+  }
+}
+
+.degree {
+  .number {
+    font-weight: 700;
+    font-size: 144px;
+    line-height: 169px;
+    /* identical to box height */
+
+    letter-spacing: 0.05em;
+  }
+  .detailed {
+    // font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: 0.05em;
+  }
+  .today-summery {
+    // font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+  }
+}
