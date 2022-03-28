@@ -16,6 +16,8 @@ export class MainComponent implements OnInit {
     };
   };
 
+  weather: any;
+
   @Input() coords!: {
     latitude: number;
     longitude: number;
@@ -52,13 +54,21 @@ export class MainComponent implements OnInit {
   }
 
   getWeatherInfo(coords: { latitude: number; longitude: number }) {
-    this.httpService.getWeatherInfo(coords).subscribe((info: any) => {
-      // this.user.coords = info.address.state;
-      console.log(info);
-      const weather = {
-        main: info.weather[0].main,
-        description: info.weather[0].description,
-      };
-    });
+    this.httpService.getWeatherInfo(coords).subscribe(
+      (info: any) => {
+        // this.user.coords = info.address.state;
+        this.weather = {
+          main: info.weather[0].main,
+          description: info.weather[0].description,
+          temp: info.main.temp,
+          temp_max: info.main.temp_max,
+          temp_min: info.main.temp_min,
+        };
+        console.log(this.weather);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

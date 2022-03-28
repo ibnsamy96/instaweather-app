@@ -8,5 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TodayComponent implements OnInit {
   constructor() {}
   @Input() user: any;
+  @Input() weather: any;
+
   ngOnInit(): void {}
 }
