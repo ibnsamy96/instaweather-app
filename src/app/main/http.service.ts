@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class HttpService {
-  api = `https://api.darksky.net/forecast/${environment.API_KEY}`;
+  api = `https://api.openweathermap.org/data/2.5/weather?`;
   cityApi = `https://us1.locationiq.com/v1/reverse.php?key=${environment.LOCATION_API_KEY}`;
 
   constructor(private http: HttpClient) {}
@@ -18,7 +18,10 @@ export class HttpService {
     latitude: number;
     longitude: number;
   }): Observable<unknown> {
-    return this.http.get(this.api + `/${coords.latitude},${coords.longitude}`);
+    return this.http.get(
+      this.api +
+        `lat=${coords.latitude}&lon=${coords.longitude}&units=metric&appid=${environment.API_KEY}`
+    );
   }
 
   getLocationInfo(coords: {

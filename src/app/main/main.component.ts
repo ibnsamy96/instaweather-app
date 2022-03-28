@@ -55,6 +55,10 @@ export class MainComponent implements OnInit {
     this.httpService.getWeatherInfo(coords).subscribe((info: any) => {
       // this.user.coords = info.address.state;
       console.log(info);
+      const weather = {
+        main: info.weather[0].main,
+        description: info.weather[0].description,
+      };
     });
   }
 }
