@@ -13,21 +13,16 @@ export class HttpService {
   weatherApi = `https://api.openweathermap.org/data/2.5/weather?`;
   locationApi = `https://us1.locationiq.com/v1/reverse.php?`;
 
-  privateKeys!: { weather: string; location: string };
+  // privateKeys!: { weather: string; location: string };
 
-  constructor(private http: HttpClient) {
-    if (environment.hasOwnProperty('LOCATION_API_KEY')) {
-      this.privateKeys = {
-        weather: environment.API_KEY,
-        location: environment.LOCATION_API_KEY,
-      };
-    } else {
-      this.privateKeys = {
-        weather: process.env['API_KEY'],
-        location: process.env['LOCATION_API_KEY'],
-      };
-    }
-  }
+  // if( (environment).hasOwnProperty('LOCATION_API_KEY') ) {
+  privateKeys = {
+    weather: environment.API_KEY,
+    location: environment.LOCATION_API_KEY,
+  };
+  // };
+
+  constructor(private http: HttpClient) {}
 
   getWeatherInfo(coords: {
     latitude: number;
