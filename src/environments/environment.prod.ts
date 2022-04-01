@@ -1,6 +1,4 @@
-import { $env } from 'src/typing';
-
-declare var process: any;
+import { $env } from 'src/typing.d';
 
 export const environment = {
   production: true,
