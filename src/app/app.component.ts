@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  showContent = false;
+  isLocationPermissionEnabled = false;
+  isApiDataFetched: { weather?: boolean; location?: boolean } = {};
 
   selectedType = 'C';
 
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     navigator.geolocation.getCurrentPosition((e) => {
       console.log(e);
-      this.showContent = true;
+      this.isLocationPermissionEnabled = true;
       this.coords = {
         longitude: e.coords.longitude,
         latitude: e.coords.latitude,
@@ -30,5 +31,14 @@ export class AppComponent implements OnInit {
     console.log(type);
 
     this.selectedType = type;
+  }
+
+  apiDataFetched(isApiDataFetched: any) {
+    this.isApiDataFetched.location =
+      this.isApiDataFetched.location ?? isApiDataFetched.location;
+    this.isApiDataFetched.weather =
+      this.isApiDataFetched.weather ?? isApiDataFetched.weather;
+
+    console.log(this.isApiDataFetched);
   }
 }

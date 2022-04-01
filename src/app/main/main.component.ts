@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpService } from './http.service';
 
 @Component({
@@ -8,6 +8,10 @@ import { HttpService } from './http.service';
 })
 export class MainComponent implements OnInit {
   @Input() selectedType: string = '';
+  @Output() apiDataFetched = new EventEmitter<{
+    weather?: boolean;
+    location?: boolean;
+  }>();
 
   user!: {
     location: string;
@@ -49,15 +53,23 @@ export class MainComponent implements OnInit {
   }
 
   getLocationInfo(coords: { latitude: number; longitude: number }) {
-    this.httpService.getLocationInfo(coords).subscribe((info: any) => {
-      this.user.location = info.address.state || info.address.city;
-      console.log(this.user);
+    this.httpService.getLocationInfo(coords).subscribe({
+      next: (info: any) => {
+        this.user.location = info.address.state || info.address.city;
+        console.log(this.user);
+
+        this.apiDataFetched.emit({ location: true });
+      },
+      error: (err) => {
+        console.log(err);
+        this.apiDataFetched.emit({ location: false });
+      },
     });
   }
 
   getWeatherInfo(coords: { latitude: number; longitude: number }) {
-    this.httpService.getWeatherInfo(coords).subscribe(
-      (info: any) => {
+    this.httpService.getWeatherInfo(coords).subscribe({
+      next: (info: any) => {
         // this.user.coords = info.address.state;
         this.weather = {
           main: info.weather[0].main,
@@ -67,12 +79,14 @@ export class MainComponent implements OnInit {
           temp_min: info.main.temp_min,
         };
         console.log(info);
-
         console.log(this.weather);
+
+        this.apiDataFetched.emit({ weather: true });
       },
-      (err) => {
+      error: (err) => {
         console.log(err);
-      }
-    );
+        this.apiDataFetched.emit({ weather: false });
+      },
+    });
   }
 }
