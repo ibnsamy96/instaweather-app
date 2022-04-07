@@ -1,6 +1,8 @@
-<app-today
-  [selectedType]="selectedType"
-  [user]="user"
-  [weather]="weather"
-></app-today>
-<app-forecast [selectedType]="selectedType"></app-forecast>
+<main *ngIf="user && weather">
+  <app-today
+    [selectedType]="selectedType"
+    [user]="user"
+    [weather]="weather"
+  ></app-today>
+  <app-forecast [selectedType]="selectedType"></app-forecast>
+</main>
