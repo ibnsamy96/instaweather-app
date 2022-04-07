@@ -6,12 +6,12 @@
 <div class="results overflow-auto d-flex flex-row">
   <div class="weather-instance">
     <div class="time">Now</div>
-    <app-current-weather-icon [type]="'cloudy'"></app-current-weather-icon>
+    <app-current-weather-icon [iconCode]="'10d'"></app-current-weather-icon>
     <div class="degree">81&#176;</div>
   </div>
   <div class="weather-instance">
     <div class="time">Now</div>
-    <app-current-weather-icon [type]="'sunny'"></app-current-weather-icon>
+    <app-current-weather-icon [iconCode]="'10d'"></app-current-weather-icon>
     <div class="degree">81&#176;</div>
   </div>
   <div
@@ -19,7 +19,7 @@
     *ngFor="let instance of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
   >
     <div class="time">Now</div>
-    <app-current-weather-icon [type]="'cloudy'"></app-current-weather-icon>
+    <app-current-weather-icon [iconCode]="'10d'"></app-current-weather-icon>
     <div class="degree">81&#176;</div>
   </div>
 </div>

@@ -74,6 +74,7 @@ export class MainComponent implements OnInit {
         this.weather = {
           main: info.weather[0].main,
           description: info.weather[0].description,
+          icon: info.weather[0].icon,
           temp: info.main.temp,
           temp_max: info.main.temp_max,
           temp_min: info.main.temp_min,

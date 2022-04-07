@@ -1,4 +1,9 @@
-<div [ngSwitch]="type">
+<img
+  [src]="'http://openweathermap.org/img/wn/' + iconCode + '@2x.png'"
+  alt=""
+/>
+
+<!-- <div [ngSwitch]="type">
   <svg
     *ngSwitchCase="'sunny'"
     width="66"
@@ -39,4 +44,4 @@
     />
   </svg>
   <div *ngSwitchDefault>loading...</div>
-</div>
+</div> -->

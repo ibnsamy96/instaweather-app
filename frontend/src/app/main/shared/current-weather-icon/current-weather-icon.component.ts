@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./current-weather-icon.component.scss'],
 })
 export class CurrentWeatherIconComponent implements OnInit {
-  @Input() type!: 'cloudy' | 'sunny';
+  @Input() iconCode!: string;
 
   constructor() {}
 
