@@ -40,7 +40,7 @@ export class HttpService {
   }): Observable<unknown> {
     return this.http.get(
       this.locationApi +
-        `lat=${coords.latitude}&lon=${coords.longitude}&format=json&key=${this.privateKeys.location}`
+        `lat=${coords.latitude}&lon=${coords.longitude}&format=json&normalizeaddress=1&normalizecity=1&key=${this.privateKeys.location}`
     );
   }
 }
