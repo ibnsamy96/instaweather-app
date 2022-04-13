@@ -27,7 +27,8 @@ async function getOpenWeatherMapInfo(latitude, longitude) {
 
 async function getWeatherApiInfo(latitude, longitude) {
   const url =
-    weatherApi + `key=${privateKeys.weather_api}&q=${latitude},${longitude}`
+    weatherApi +
+    `q=${latitude},${longitude}&days=10&key=${privateKeys.weather_api}`
   const data = await fetchJSON(url)
   return data
 }
