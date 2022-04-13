@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   isLocationPermissionEnabled = false;
-  isApiDataFetched: { weather?: boolean; location?: boolean } = {};
+  isApiDataFetched!: boolean;
 
   selectedType = 'C';
 
@@ -33,12 +33,12 @@ export class AppComponent implements OnInit {
     this.selectedType = type;
   }
 
-  apiDataFetched(isApiDataFetched: any) {
-    this.isApiDataFetched.location =
-      this.isApiDataFetched.location ?? isApiDataFetched.location;
-    this.isApiDataFetched.weather =
-      this.isApiDataFetched.weather ?? isApiDataFetched.weather;
+  // apiDataFetched(isApiDataFetched: any) {
+  //   this.isApiDataFetched.location =
+  //     this.isApiDataFetched.location ?? isApiDataFetched.location;
+  //   this.isApiDataFetched.weather =
+  //     this.isApiDataFetched.weather ?? isApiDataFetched.weather;
 
-    console.log(this.isApiDataFetched);
-  }
+  //   console.log(this.isApiDataFetched);
+  // }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Response } from '../response.interface';
 
 @Component({
   selector: 'app-forecast',
@@ -7,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ForecastComponent implements OnInit {
   @Input() selectedType: any;
+  @Input() weather!: Response;
 
   constructor() {}
 

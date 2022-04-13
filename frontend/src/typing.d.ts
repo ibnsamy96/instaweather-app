@@ -5,4 +5,5 @@ declare var $env: ENV;
 interface ENV {
   API_KEY: string;
   LOCATION_API_KEY: string;
+  ApiUri: string;
 }

@@ -1,20 +1,10 @@
 <div
   class="dark-layer d-flex justify-content-center align-items-center"
-  [style.z-index]="
-    isLocationPermissionEnabled &&
-    isApiDataFetched.weather &&
-    isApiDataFetched.location
-      ? '5'
-      : 20
-  "
+  [style.z-index]="isLocationPermissionEnabled && isApiDataFetched ? '5' : 20"
 >
   <div
     [style.display]="
-      isLocationPermissionEnabled &&
-      isApiDataFetched.weather &&
-      isApiDataFetched.location
-        ? 'none'
-        : 'block'
+      isLocationPermissionEnabled && isApiDataFetched ? 'none' : 'block'
     "
     class="rounded-circle loading-icon"
   ></div>
@@ -25,7 +15,7 @@
 >
   <app-header (typeChanged)="updateUI($event)"></app-header>
   <app-main
-    (apiDataFetched)="apiDataFetched($event)"
+    (apiDataFetched)="isApiDataFetched = true"
     [selectedType]="selectedType"
     [coords]="coords"
     class="d-flex justify-content-evenly align-items-stretch flex-column"

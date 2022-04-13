@@ -26,6 +26,8 @@ function formatCurrentWeather(currentInfo, forecastInfo) {
   /*
     current: {
       date:{
+        minutes,
+        hours,
         day,
         month,
         year
@@ -107,7 +109,6 @@ async function getWeatherAndLocationInfo(latitude, longitude) {
   const forecastInfo = await getWeatherApiInfo(latitude, longitude)
 
   /*
-    TODO  concatenate the needed data
     data = {
         location,
         current,
@@ -119,7 +120,6 @@ async function getWeatherAndLocationInfo(latitude, longitude) {
   const current = formatCurrentWeather(currentInfo, forecastInfo)
   const forecast = formatForecastedInfo(forecastInfo)
 
-  // TODO return concatenated data
   return { location, current, forecast }
 }
 

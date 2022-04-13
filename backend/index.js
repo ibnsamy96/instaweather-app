@@ -7,8 +7,10 @@ const app = express()
 const PORT = 3000
 
 app.get("/", async (req, res) => {
-  const data = await getWeatherAndLocationInfo(30.77, 31.0)
-  // res.set("Content-Type", "text/html")
+  const latitude = req.query.lat
+  const longitude = req.query.lon
+  console.log(latitude, longitude)
+  const data = await getWeatherAndLocationInfo(latitude, longitude)
   res.status(200).send(data)
 })
 
