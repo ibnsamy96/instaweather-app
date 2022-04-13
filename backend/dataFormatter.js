@@ -33,8 +33,8 @@ function formatCurrentWeather(currentInfo, forecastInfo) {
       temp,
       temp_max,
       temp_min,
-      main,
-      description
+      state_text,
+      state_description
     }
   */
 
@@ -50,8 +50,8 @@ function formatCurrentWeather(currentInfo, forecastInfo) {
 
   const current = {
     date,
-    main: currentInfo.weather[0].main,
-    description: currentInfo.weather[0].description,
+    state_text: currentInfo.weather[0].main.toUpperCase(),
+    state_description: currentInfo.weather[0].description.toUpperCase(),
     icon: currentInfo.weather[0].icon,
     temp: currentInfo.main.temp,
     temp_max: forecastInfo.forecast.forecastday[0].day.maxtemp_c,
@@ -63,7 +63,18 @@ function formatCurrentWeather(currentInfo, forecastInfo) {
 
 function formatForecastedInfo(forecastInfo) {
   /*
-    forecast:{}
+    forecast:[
+      {
+        date,
+        TODO map weather api icons to openweathermap naming
+        icon,
+        temp:avgtemp_c,
+        state_text,
+        hours:{
+          TODO add hours
+        }
+      }
+    ]
   */
 }
 

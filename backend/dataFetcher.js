@@ -26,6 +26,7 @@ async function getOpenWeatherMapInfo(latitude, longitude) {
 }
 
 async function getWeatherApiInfo(latitude, longitude) {
+  // maximum for forecasted days is 3, any larger number will be normalized to 3
   const url =
     weatherApi +
     `q=${latitude},${longitude}&days=10&key=${privateKeys.weather_api}`
