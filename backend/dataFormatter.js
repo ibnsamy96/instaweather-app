@@ -1,4 +1,5 @@
 const { getOpenWeatherMapInfo, getWeatherApiInfo } = require("./dataFetcher")
+const mapIcon = require("./iconsMapper")
 
 function formatLocation(currentInfo, forecastInfo) {
   /*
@@ -50,8 +51,8 @@ function formatCurrentWeather(currentInfo, forecastInfo) {
 
   const current = {
     date,
-    state_text: currentInfo.weather[0].main.toUpperCase(),
-    state_description: currentInfo.weather[0].description.toUpperCase(),
+    state_text: currentInfo.weather[0].main,
+    state_description: currentInfo.weather[0].description,
     icon: currentInfo.weather[0].icon,
     temp: currentInfo.main.temp,
     temp_max: forecastInfo.forecast.forecastday[0].day.maxtemp_c,
@@ -66,16 +67,39 @@ function formatForecastedInfo(forecastInfo) {
     forecast:[
       {
         date,
-        TODO map weather api icons to openweathermap naming
         icon,
         temp:avgtemp_c,
         state_text,
-        hours:{
-          TODO add hours
-        }
+        hours:[
+          {
+            hour,
+            icon,
+            temp
+          }
+        ]
       }
     ]
   */
+
+  const forecast = forecastInfo.forecast.forecastday.map((dayObj) => {
+    const date = {
+      day: dayObj.date.split("-")[2],
+      month: dayObj.date.split("-")[1],
+      year: dayObj.date.split("-")[0],
+    }
+    const icon = mapIcon(dayObj.day.condition.icon)
+    const temp = dayObj.avgtemp_c
+    const state_text = dayObj.day.condition.text
+    const hours = dayObj.hour.map((hourObj) => {
+      const hour = hourObj.time.split(" ")[1].split(":")[0]
+      const icon = mapIcon(hourObj.condition.icon)
+      const temp = hourObj.temp_c
+      return { hour, icon, temp }
+    })
+    return { date, temp, icon, state_text, hours }
+  })
+
+  return forecast
 }
 
 async function getWeatherAndLocationInfo(latitude, longitude) {
