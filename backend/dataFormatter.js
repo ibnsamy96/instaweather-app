@@ -93,7 +93,7 @@ function formatForecastedInfo(forecastInfo) {
     const temp = dayObj.avgtemp_c
     const state_text = dayObj.day.condition.text
     const hours = dayObj.hour.map((hourObj) => {
-      const hour = hourObj.time.split(" ")[1].split(":")[0]
+      const hour = hourObj.time.split(" ")[1]
       const icon = mapIcon(hourObj.condition.icon)
       const temp = hourObj.temp_c
       return { hour, icon, temp }
