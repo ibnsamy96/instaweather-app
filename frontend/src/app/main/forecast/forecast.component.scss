@@ -48,6 +48,8 @@
 
 .weather-instance {
   padding: 38px 10px;
+  min-width: 120px;
+  text-align: center;
 
   &:not(:last-of-type) {
     margin-right: 68px;

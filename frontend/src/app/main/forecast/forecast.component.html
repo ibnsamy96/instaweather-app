@@ -4,14 +4,15 @@
 </div>
 
 <div class="results overflow-auto d-flex flex-row">
-  <div
-    class="weather-instance"
-    *ngFor="let hourInstance of weather.forecast[0].hours"
-  >
+  <div class="weather-instance" *ngFor="let hourInstance of next12Hours">
     <div class="time">{{ hourInstance.hour }}</div>
     <app-current-weather-icon
       [iconCode]="hourInstance.icon"
     ></app-current-weather-icon>
-    <div class="degree">{{ hourInstance.temp }}&#176;</div>
+    <div class="degree">
+      {{
+        hourInstance.temp | typeChecker: selectedType | number: "1.1-1"
+      }}&#176;
+    </div>
   </div>
 </div>

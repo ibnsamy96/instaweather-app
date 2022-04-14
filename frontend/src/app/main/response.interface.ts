@@ -24,7 +24,7 @@ interface CurrentWeather {
   state_description: string;
 }
 
-interface HourWeather {
+export interface HourWeather {
   hour: string;
   icon: string;
   temp: number;
