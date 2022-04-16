@@ -89,12 +89,12 @@ function formatForecastedInfo(forecastInfo) {
       month: dayObj.date.split("-")[1],
       year: dayObj.date.split("-")[0],
     }
-    const icon = mapIcon(dayObj.day.condition.icon)
+    const icon = mapIcon({ weatherApiIconLink: dayObj.day.condition.icon })
     const temp = dayObj.avgtemp_c
     const state_text = dayObj.day.condition.text
     const hours = dayObj.hour.map((hourObj) => {
       const hour = hourObj.time.split(" ")[1]
-      const icon = mapIcon(hourObj.condition.icon)
+      const icon = mapIcon({ weatherApiIconLink: hourObj.condition.icon })
       const temp = hourObj.temp_c
       return { hour, icon, temp }
     })

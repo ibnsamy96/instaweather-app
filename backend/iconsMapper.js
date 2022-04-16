@@ -1,4 +1,4 @@
-const openWeatherMapIcons = {
+const weatherApiIconsCodes = {
   113: "01",
   116: "02",
   119: "03",
@@ -51,11 +51,67 @@ const openWeatherMapIcons = {
 
 // //cdn.weatherapi.com/weather/64x64/day/116.png
 
-function mapIcon(weatherApiIconUrl) {
+function mapWeatherApiIcon(weatherApiIconUrl) {
   const urlArray = weatherApiIconUrl.split("/")
   const code = urlArray[urlArray.length - 1].split(".")[0] // 116
   const type = urlArray[urlArray.length - 2] // day or night
-  return `${openWeatherMapIcons[code]}${type[0]}`
+  return `${weatherApiIconsCodes[code]}${type[0]}`
+}
+
+const weatherBitIconsCodes = {
+  200: "10",
+  201: "10",
+  202: "10",
+  230: "11",
+  231: "11",
+  232: "11",
+  233: "11",
+  300: "13",
+  301: "13",
+  302: "13",
+  500: "09",
+  501: "09",
+  502: "09",
+  511: "09",
+  520: "10",
+  521: "10",
+  522: "10",
+  600: "13",
+  601: "13",
+  602: "13",
+  610: "13",
+  611: "04",
+  612: "04",
+  621: "13",
+  622: "13",
+  623: "13",
+  700: "50",
+  711: "50",
+  721: "50",
+  731: "50",
+  741: "50",
+  751: "50",
+  800: "01",
+  801: "02",
+  802: "02",
+  803: "03",
+  804: "04",
+  900: "09",
+}
+
+function mapWeatherBitIcon(icon, code) {
+  const type = icon[icon.length - 1] // day or night
+  return `${weatherBitIconsCodes[code]}${type[0]}`
+}
+
+function mapIcon(iconParameters) {
+  const weatherApiIconLink = iconParameters["weatherApiIconLink"] || undefined
+
+  if (weatherApiIconLink) return mapWeatherApiIcon(weatherApiIconLink)
+
+  const weatherBitIcon = iconParameters["weatherBitIcon"] || undefined
+  const weatherBitCode = iconParameters["weatherBitCode"] || undefined
+  return mapWeatherBitIcon(weatherBitIcon, weatherBitCode)
 }
 
 module.exports = mapIcon
