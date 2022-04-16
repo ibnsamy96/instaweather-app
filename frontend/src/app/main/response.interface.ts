@@ -1,11 +1,3 @@
-interface Date {
-  minutes?: string;
-  hours?: string;
-  day: string;
-  month: string;
-  year: string;
-}
-
 interface Location {
   longitude: number;
   latitude: number;
@@ -15,7 +7,7 @@ interface Location {
 }
 
 interface CurrentWeather {
-  date: Date;
+  date: string;
   icon: string;
   temp: number;
   temp_max: number;
@@ -30,16 +22,21 @@ export interface HourWeather {
   temp: number;
 }
 
-interface ForecastedDayWeather {
-  date: Date;
+interface HourlyForecast {
+  date: string;
+  hours: HourWeather[];
+}
+
+export interface DayWeather {
+  date: string;
   icon: string;
   temp: number;
   state_text: string;
-  hours: HourWeather[];
 }
 
 export interface Response {
   location: Location;
   current: CurrentWeather;
-  forecast: ForecastedDayWeather[];
+  hourly_forecast: HourlyForecast[];
+  daily_forecast: DayWeather[];
 }

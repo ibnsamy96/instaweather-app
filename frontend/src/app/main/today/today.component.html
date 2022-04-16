@@ -2,13 +2,7 @@
   <div class="col user">
     <p class="city">{{ weather.location.city }}</p>
     <p class="date">
-      {{
-        weather.current.date.year +
-          "-" +
-          weather.current.date.month +
-          "-" +
-          weather.current.date.day | date: "longDate"
-      }}
+      {{ weather.current.date | date: "longDate" }}
     </p>
     <app-current-weather-icon
       [iconCode]="weather.current.icon"

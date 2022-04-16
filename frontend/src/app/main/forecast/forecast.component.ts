@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Response, HourWeather } from '../response.interface';
+import { Response, HourWeather, DayWeather } from '../response.interface';
 
 @Component({
   selector: 'app-forecast',
@@ -9,7 +9,9 @@ import { Response, HourWeather } from '../response.interface';
 export class ForecastComponent implements OnInit {
   @Input() selectedType: any;
   @Input() weather!: Response;
-  @Input() next12Hours!: HourWeather[];
+  next24Hours!: HourWeather[];
+  next16Days!: DayWeather[];
+  isForecastPeriodHourly: boolean = true;
 
   constructor() {}
 
@@ -21,7 +23,7 @@ export class ForecastComponent implements OnInit {
       const date = new Date();
       const startHour = date.getHours();
 
-      this.next12Hours = this.weather.forecast
+      this.next24Hours = this.weather.hourly_forecast
         .reduce((acc, dayObj, dayIndex) => {
           if (dayIndex === 0) {
             dayObj.hours = dayObj.hours.slice(startHour);
@@ -32,7 +34,21 @@ export class ForecastComponent implements OnInit {
         }, [])
         .slice(0, 25);
 
+      // TODO create the daily instances template
+      this.next16Days = this.weather.daily_forecast.reduce(
+        (acc, dayObj, dayIndex) => {
+          if (dayIndex === 0) dayObj.date = 'Today';
+          acc = [...acc, dayObj as unknown as never];
+          return acc;
+        },
+        []
+      );
+
+      console.log(this.next16Days);
+
       clearInterval(weatherChecker);
     }, 10);
   }
+
+  // toggleForecastPeriod(chosen: 'daily' | 'hourly') {}
 }
