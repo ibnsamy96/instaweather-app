@@ -1,10 +1,17 @@
 const express = require("express")
+const cors = require("cors")
 require("dotenv").config()
 
 const getWeatherAndLocationInfo = require("./dataFormatter")
 
 const app = express()
 const PORT = 3000
+
+app.use(
+  cors({
+    origin: ["https://instaweather.ibnsamy.me"],
+  })
+)
 
 app.get("/", async (req, res) => {
   const latitude = req.query.lat
