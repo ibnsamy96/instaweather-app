@@ -1,7 +1,11 @@
-const { getOpenWeatherMapInfo, getWeatherApiInfo } = require("./dataFetcher")
+const {
+  getOpenWeatherMapInfo,
+  getWeatherApiInfo,
+  getWeatherBitInfo,
+} = require("./dataFetcher")
 const mapIcon = require("./iconsMapper")
 
-function formatLocation(currentInfo, forecastInfo) {
+function formatLocation(currentInfo, hourlyForecastInfo) {
   /*
     location:{
       longitude,
@@ -16,22 +20,16 @@ function formatLocation(currentInfo, forecastInfo) {
     longitude: currentInfo.coord.lon,
     latitude: currentInfo.coord.lat,
     city: currentInfo.name,
-    region: forecastInfo.location.region,
-    country: forecastInfo.location.country,
+    region: hourlyForecastInfo.location.region,
+    country: hourlyForecastInfo.location.country,
   }
   return location
 }
 
-function formatCurrentWeather(currentInfo, forecastInfo) {
+function formatCurrentWeather(currentInfo, hourlyForecastInfo) {
   /*
     current: {
-      date:{
-        minutes,
-        hours,
-        day,
-        month,
-        year
-      },
+      date:,
       icon,
       temp,
       temp_max,
@@ -41,37 +39,28 @@ function formatCurrentWeather(currentInfo, forecastInfo) {
     }
   */
 
-  const lastUpdate = forecastInfo.current.last_updated.split(" ")
+  const lastUpdate = hourlyForecastInfo.current.last_updated.split(" ")
 
-  const date = {
-    minutes: lastUpdate[1].split(":")[1],
-    hours: lastUpdate[1].split(":")[0],
-    day: lastUpdate[0].split("-")[2],
-    month: lastUpdate[0].split("-")[1],
-    year: lastUpdate[0].split("-")[0],
-  }
+  const date = hourlyForecastInfo.current.last_updated
 
   const current = {
     date,
     state_text: currentInfo.weather[0].main,
-    state_description: currentInfo.weather[0].description,
     icon: currentInfo.weather[0].icon,
     temp: currentInfo.main.temp,
-    temp_max: forecastInfo.forecast.forecastday[0].day.maxtemp_c,
-    temp_min: forecastInfo.forecast.forecastday[0].day.mintemp_c,
+    temp_max: hourlyForecastInfo.forecast.forecastday[0].day.maxtemp_c,
+    temp_min: hourlyForecastInfo.forecast.forecastday[0].day.mintemp_c,
+    state_description: currentInfo.weather[0].description,
   }
 
   return current
 }
 
-function formatForecastedInfo(forecastInfo) {
+function formatHourlyForecastedInfo(hourlyForecastInfo) {
   /*
-    forecast:[
+    hourly_forecast:[
       {
         date,
-        icon,
-        temp:avgtemp_c,
-        state_text,
         hours:[
           {
             hour,
@@ -83,30 +72,53 @@ function formatForecastedInfo(forecastInfo) {
     ]
   */
 
-  const forecast = forecastInfo.forecast.forecastday.map((dayObj) => {
-    const date = {
-      day: dayObj.date.split("-")[2],
-      month: dayObj.date.split("-")[1],
-      year: dayObj.date.split("-")[0],
+  const hourly_forecast = hourlyForecastInfo.forecast.forecastday.map(
+    (dayObj) => {
+      const date = dayObj.date
+      const hours = dayObj.hour.map((hourObj) => {
+        const hour = hourObj.time.split(" ")[1]
+        const icon = mapIcon({ weatherApiIconLink: hourObj.condition.icon })
+        const temp = hourObj.temp_c
+        return { hour, icon, temp }
+      })
+      return { date, hours }
     }
-    const icon = mapIcon({ weatherApiIconLink: dayObj.day.condition.icon })
-    const temp = dayObj.avgtemp_c
-    const state_text = dayObj.day.condition.text
-    const hours = dayObj.hour.map((hourObj) => {
-      const hour = hourObj.time.split(" ")[1]
-      const icon = mapIcon({ weatherApiIconLink: hourObj.condition.icon })
-      const temp = hourObj.temp_c
-      return { hour, icon, temp }
+  )
+
+  return hourly_forecast
+}
+
+function formatDailyForecastedInfo(dailyForecastInfo) {
+  // return dailyForecastInfo
+  /*
+    daily_forecast:[
+      {
+        date,
+        icon,
+        temp,
+        state_text,
+      }
+    ]
+  */
+
+  daily_forecast = dailyForecastInfo.data.map((dayObj) => {
+    date = dayObj.valid_date
+    icon = mapIcon({
+      weatherBitCode: dayObj.weather.code,
+      weatherBitIcon: dayObj.weather.icon,
     })
-    return { date, temp, icon, state_text, hours }
+    temp = dayObj.temp
+    state_text = dayObj.weather.description
+    return { date, icon, temp, state_text }
   })
 
-  return forecast
+  return daily_forecast
 }
 
 async function getWeatherAndLocationInfo(latitude, longitude) {
   const currentInfo = await getOpenWeatherMapInfo(latitude, longitude)
-  const forecastInfo = await getWeatherApiInfo(latitude, longitude)
+  const hourlyForecastInfo = await getWeatherApiInfo(latitude, longitude)
+  const dailyForecastInfo = await getWeatherBitInfo(latitude, longitude)
 
   /*
     data = {
@@ -116,11 +128,12 @@ async function getWeatherAndLocationInfo(latitude, longitude) {
     }
   */
 
-  const location = formatLocation(currentInfo, forecastInfo)
-  const current = formatCurrentWeather(currentInfo, forecastInfo)
-  const forecast = formatForecastedInfo(forecastInfo)
+  const location = formatLocation(currentInfo, hourlyForecastInfo)
+  const current = formatCurrentWeather(currentInfo, hourlyForecastInfo)
+  const hourly_forecast = formatHourlyForecastedInfo(hourlyForecastInfo)
+  const daily_forecast = formatDailyForecastedInfo(dailyForecastInfo)
 
-  return { location, current, forecast }
+  return { location, current, hourly_forecast, daily_forecast }
 }
 
 module.exports = getWeatherAndLocationInfo

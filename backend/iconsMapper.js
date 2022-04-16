@@ -104,14 +104,9 @@ function mapWeatherBitIcon(icon, code) {
   return `${weatherBitIconsCodes[code]}${type[0]}`
 }
 
-function mapIcon(iconParameters) {
-  const weatherApiIconLink = iconParameters["weatherApiIconLink"] || undefined
-
+function mapIcon({ weatherApiIconLink, weatherBitIcon, weatherBitCode }) {
   if (weatherApiIconLink) return mapWeatherApiIcon(weatherApiIconLink)
-
-  const weatherBitIcon = iconParameters["weatherBitIcon"] || undefined
-  const weatherBitCode = iconParameters["weatherBitCode"] || undefined
-  return mapWeatherBitIcon(weatherBitIcon, weatherBitCode)
+  else return mapWeatherBitIcon(weatherBitIcon, weatherBitCode)
 }
 
 module.exports = mapIcon
