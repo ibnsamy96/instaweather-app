@@ -1,0 +1,49 @@
+<div class="selectors w-100 d-block">
+  <button
+    (click)="isForecastPeriodHourly = true"
+    class="selector"
+    [class.selected]="isForecastPeriodHourly"
+  >
+    Hourly
+  </button>
+  <button
+    (click)="isForecastPeriodHourly = false"
+    class="selector"
+    [class.selected]="!isForecastPeriodHourly"
+  >
+    Daily
+  </button>
+</div>
+
+<div
+  *ngIf="isForecastPeriodHourly"
+  class="results overflow-auto d-flex flex-row"
+>
+  <div class="weather-instance" *ngFor="let hourInstance of next24Hours">
+    <div class="time">{{ hourInstance.hour }}</div>
+    <app-current-weather-icon
+      [iconCode]="hourInstance.icon"
+    ></app-current-weather-icon>
+    <div class="degree">
+      {{
+        hourInstance.temp | typeChecker: selectedType | number: "1.1-1"
+      }}&#176;
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="!isForecastPeriodHourly"
+  class="results overflow-auto d-flex flex-row"
+>
+  <div class="weather-instance" *ngFor="let dayInstance of next16Days">
+    <!-- TODO present date as it should be presented -->
+    <div class="time">{{ dayInstance.date }}</div>
+    <app-current-weather-icon
+      [iconCode]="dayInstance.icon"
+    ></app-current-weather-icon>
+    <div class="degree">
+      {{ dayInstance.temp | typeChecker: selectedType | number: "1.1-1" }}&#176;
+    </div>
+  </div>
+</div>

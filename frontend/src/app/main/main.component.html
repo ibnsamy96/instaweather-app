@@ -1,0 +1,7 @@
+<main *ngIf="weatherInfo">
+  <app-today [selectedType]="selectedType" [weather]="weatherInfo"></app-today>
+  <app-forecast
+    [selectedType]="selectedType"
+    [weather]="weatherInfo"
+  ></app-forecast>
+</main>

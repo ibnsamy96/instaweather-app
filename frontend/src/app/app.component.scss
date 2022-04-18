@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  // TODO make sure to use right background color
+  background-image: url("../assets/images/dominik-lange-ZUvF7qEIcVI-unsplash.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 100%;
+
+  position: relative;
+}
+
+.dark-layer {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  z-index: 20;
+
+  .loading-icon {
+    width: 40px;
+    height: 40px;
+    border: solid 3px white;
+    border-right: transparent;
+    border-bottom: transparent;
+    animation: rotate 1.5s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+
+  width: 1152px;
+  margin: auto;
+  min-height: 100%;
+
+  app-main {
+    flex-grow: 2;
+  }
+
+  * {
+    width: 100%;
+  }
+}
