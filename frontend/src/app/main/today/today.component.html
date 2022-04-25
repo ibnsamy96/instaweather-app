@@ -14,7 +14,7 @@
   <div class="col text-end degree">
     <p class="number">
       {{
-        weather.current.temp | typeChecker: selectedType | number: "1.0-1"
+        weather.current.temp | typeChecker: selectedType | number: "1.0-0"
       }}&#176;
     </p>
     <p class="detailed">
@@ -22,7 +22,7 @@
         >{{
           weather.current.temp_max
             | typeChecker: selectedType
-            | number: "1.0-1"
+            | number: "1.0-0"
         }}&#176;</span
       >
       /
@@ -30,7 +30,7 @@
         >{{
           weather.current.temp_min
             | typeChecker: selectedType
-            | number: "1.0-1"
+            | number: "1.0-0"
         }}&#176;</span
       >
     </p>
