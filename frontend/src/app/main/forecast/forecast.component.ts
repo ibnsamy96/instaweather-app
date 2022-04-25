@@ -37,7 +37,11 @@ export class ForecastComponent implements OnInit {
       // TODO create the daily instances template
       this.next16Days = this.weather.daily_forecast.reduce(
         (acc, dayObj, dayIndex) => {
-          if (dayIndex === 0) dayObj.date = 'Today';
+          if (dayIndex !== 0)
+            dayObj.date = `${new Date(dayObj.date).getDate()}/${
+              new Date(dayObj.date).getMonth() + 1
+            }`;
+          else dayObj.date = 'Today';
           acc = [...acc, dayObj as unknown as never];
           return acc;
         },
