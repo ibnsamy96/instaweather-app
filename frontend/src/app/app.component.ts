@@ -17,14 +17,19 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit() {
-    navigator.geolocation.getCurrentPosition((e) => {
-      console.log(e);
-      this.isLocationPermissionEnabled = true;
-      this.coords = {
-        longitude: e.coords.longitude,
-        latitude: e.coords.latitude,
-      };
-    });
+    navigator.geolocation.getCurrentPosition(
+      (e) => {
+        console.log(e);
+        this.isLocationPermissionEnabled = true;
+        this.coords = {
+          longitude: e.coords.longitude,
+          latitude: e.coords.latitude,
+        };
+      },
+      (err) => {
+        alert("Error happened, Can't retrieve your location.");
+      }
+    );
   }
 
   updateUI(type: string) {
