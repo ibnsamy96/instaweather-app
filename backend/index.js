@@ -9,7 +9,7 @@ const PORT = 3000
 
 app.use(
   cors({
-    origin: ["https://instaweather.ibnsamy.me"],
+    origin: "*",
   })
 )
 
