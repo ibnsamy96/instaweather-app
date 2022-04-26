@@ -98,51 +98,51 @@
   }
 }
 
-// @media (max-width: 400px) {
-//   .row {
-//     flex-direction: column;
-//     margin-bottom: 2rem;
-//   }
+@media (max-width: 400px) {
+  .row {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
 
-//   .col {
-//     text-align: center;
-//   }
+  .col {
+    text-align: center;
+  }
 
-//   .user {
-//     .city {
-//       display: inline-block;
-//       padding-bottom: 0;
-//       margin-bottom: 0px;
-//       /* line-height: 36px; */
-//       margin-right: 1rem;
-//     }
+  .user {
+    .city {
+      display: inline-block;
+      padding-bottom: 0;
+      margin-bottom: 0px;
+      /* line-height: 36px; */
+      margin-right: 1rem;
+    }
 
-//     .date {
-//       display: none;
-//     }
+    .date {
+      display: none;
+    }
 
-//     .current-icon {
-//       text-align: center;
-//       margin-left: auto;
-//       margin-right: auto;
-//       display: inline-block;
-//       vertical-align: bottom;
-//       width: 35px;
-//       height: 35px;
-//     }
+    .current-icon {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display: inline-block;
+      vertical-align: bottom;
+      width: 35px;
+      height: 35px;
+    }
 
-//     .current-summery {
-//       display: none;
-//     }
-//   }
+    .current-summery {
+      display: none;
+    }
+  }
 
-//   .degree {
-//     .number {
-//       line-height: 100px;
-//     }
-//     .detailed {
-//       font-size: 25px;
-//       line-height: 20px;
-//     }
-//   }
-// }
+  .degree {
+    .number {
+      line-height: 100px;
+    }
+    .detailed {
+      font-size: 25px;
+      line-height: 20px;
+    }
+  }
+}
