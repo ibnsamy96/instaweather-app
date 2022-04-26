@@ -38,6 +38,7 @@
 }
 
 .degree {
+  text-align: right;
   .number {
     font-weight: 700;
     font-size: 144px;
@@ -59,5 +60,89 @@
     font-size: 24px;
     line-height: 28px;
     text-align: center;
+  }
+}
+
+@media (max-width: 550px) {
+  .user {
+    .city {
+      font-size: 50px;
+    }
+
+    .date {
+      font-size: 16px;
+    }
+
+    .current-icon {
+      width: 54px;
+      height: 54px;
+    }
+
+    .current-summery {
+      font-size: 25px;
+    }
+  }
+
+  .degree {
+    .number {
+      font-size: 100px;
+      line-height: 140px;
+    }
+    .detailed {
+      font-size: 32px;
+      line-height: 35px;
+    }
+    .today-summery {
+      font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .row {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .col {
+    text-align: center;
+  }
+
+  .user {
+    .city {
+      display: inline-block;
+      padding-bottom: 0;
+      margin-bottom: 0px;
+      /* line-height: 36px; */
+      margin-right: 1rem;
+    }
+
+    .date {
+      display: none;
+    }
+
+    .current-icon {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      display: inline-block;
+      vertical-align: bottom;
+      width: 35px;
+      height: 35px;
+    }
+
+    .current-summery {
+      display: none;
+    }
+  }
+
+  .degree {
+    .number {
+      line-height: 100px;
+    }
+    .detailed {
+      font-size: 25px;
+      line-height: 20px;
+    }
   }
 }

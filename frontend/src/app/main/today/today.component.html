@@ -11,7 +11,7 @@
     </app-current-weather-icon>
     <span class="current-summery">{{ weather.current.state_text }}</span>
   </div>
-  <div class="col text-end degree">
+  <div class="col degree">
     <p class="number">
       {{
         weather.current.temp | typeChecker: selectedType | number: "1.0-0"
