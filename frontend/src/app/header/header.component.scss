@@ -14,3 +14,9 @@ h1 {
   letter-spacing: 0.05em;
   color: #ffffff;
 }
+
+@media (max-width: 550px) {
+  h1 {
+    font-size: 20px;
+  }
+}
